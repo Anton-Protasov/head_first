@@ -3,14 +3,10 @@ package pattern_observer;
 import java.util.ArrayList;
 
 public class WeatherData implements Subject {
-    private ArrayList observers;
+    private ArrayList observers = new ArrayList();
     private double temperature;
     private double pressure;
     private double humidity;
-
-    public WeatherData() {
-        observers = new ArrayList();
-    }
 
     public void registerObserver(Observer o) {
         observers.add(o);
@@ -30,14 +26,10 @@ public class WeatherData implements Subject {
         }
     }
 
-    public void measurementChanged(){
-        notifyObservers();
-    }
-
     public void setMeasurements(double temperature, double humidity, double pressure){
         this.temperature = temperature;
         this.pressure = pressure;
         this.humidity = humidity;
-        measurementChanged();
+        notifyObservers();
     }
 }
